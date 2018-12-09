@@ -35,6 +35,8 @@
             </li>
 
 
+            <li class="<?php if($active == "benef"){echo "navigation__active"; } ?>"><a href="benefice"><i class="zmdi zmdi-money"></i> Bénéfices sur recharge </a></li>
+
             <li  class="<?php if($active == "adduser" || $active == "member"){echo "navigation__sub navigation__sub--active navigation__sub--toggled"; }else{ echo "navigation__sub @@tableactive"; } ?>">
                 <a href="#"><i class="zmdi zmdi-assignment-account"></i>Interfaces d'utilisateur</a>
                 <ul>
@@ -52,11 +54,8 @@
                 </ul>
             </li>
 
-            <li class="<?php if($active == "benef"){echo "navigation__active"; } ?>"><a href="benefice"><i class="zmdi zmdi-money"></i> Bénéfices sur recharge </a></li>
-
             <li class="<?php if($active == "log"){echo "navigation__active"; } ?>"><a href="log"><i class="zmdi zmdi-local-activity"></i> Log </a></li>
-
-
+            
         </ul>
     </div>
 </aside>

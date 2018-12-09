@@ -18,6 +18,83 @@ function getAllUser()
 }
 
 
+
+function getTraceRecharge()
+{
+    global $bdd;
+    $result=array();
+    $req=$bdd->query("select * from trace_recharge");
+    if($req)
+    {
+        while ($row=$req->fetch(PDO::FETCH_OBJ))
+        {
+            $result[]=$row;
+        }
+
+    }
+
+    return $result;
+}
+
+
+function findTraceBenefice($code)
+{
+    global $bdd;
+    $result=null;
+    $req=$bdd->prepare("select * from benefices where id_trans=?");
+    $req->execute(array($code));
+    if($req)
+    {
+        if($req)
+        {
+            $result=$req->fetch(PDO::FETCH_OBJ);
+        }
+
+    }
+
+    return $result;
+}
+
+
+function findInfoAchat($code)
+{
+    global $bdd;
+    $result=null;
+    $req=$bdd->prepare("select * from infos_tmp where ID_trans=?");
+    $req->execute(array($code));
+    if($req)
+    {
+        if($req)
+        {
+            $result=$req->fetch(PDO::FETCH_OBJ);
+        }
+
+    }
+
+    return $result;
+}
+
+
+
+
+
+function getBenefice()
+{
+    global $bdd;
+    $result=null;
+
+    $req=$bdd->query("select * from solde_benefice");
+    if($req)
+    {
+        $result=$req->fetch(PDO::FETCH_OBJ);
+    }
+    return $result;
+
+}
+
+
+
+
 function getAllVisiteur24()
 {
     global $bdd;
