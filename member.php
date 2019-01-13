@@ -59,7 +59,7 @@ require 'pages/side_menu.php';
 
                                         <div class="dropdown-menu dropdown-menu-right dropdown-menu--active dropdown-menu--icon">
                                             <a href="updateuser?user=<?php echo $user->code ?>" class="dropdown-item"><i class="zmdi zmdi-edit"></i>Modifier</a>
-                                            <a href="#" class="dropdown-item"><i class="zmdi zmdi-delete"></i>Supprimer</a>
+<!--                                            <a href="#" class="dropdown-item"><i class="zmdi zmdi-delete"></i>Supprimer</a>-->
                                         </div>
                                     </div>
                                 </div>

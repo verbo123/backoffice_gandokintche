@@ -23,7 +23,7 @@ function getTraceRecharge()
 {
     global $bdd;
     $result=array();
-    $req=$bdd->query("select * from trace_recharge");
+    $req=$bdd->query("select * from trace_recharge order by created_at desc ");
     if($req)
     {
         while ($row=$req->fetch(PDO::FETCH_OBJ))
@@ -74,7 +74,22 @@ function findInfoAchat($code)
     return $result;
 }
 
+function getAnnee()
+{
+    global $bdd;
+    $result=array();
+    $req=$bdd->query("select YEAR(date) as annee  from transaction group by YEAR(date) desc");
+    if($req)
+    {
+        while ($row=$req->fetch(PDO::FETCH_OBJ))
+        {
+            $result[]=$row;
+        }
 
+    }
+
+    return $result;
+}
 
 
 
@@ -99,7 +114,7 @@ function getAllVisiteur24()
 {
     global $bdd;
     $result=array();
-    $req=$bdd->query("select * from stats_visites  where TIME_TO_SEC(TIMEDIFF(CURRENT_TIME(),TIME(date_updated)))/3600 <=24 and  TIME_TO_SEC(TIMEDIFF(CURRENT_TIME(),TIME(date_updated)))/3600 > 0");
+    $req=$bdd->query("select * from stats_visites  where TIME_TO_SEC(TIMEDIFF(CURRENT_TIME(),TIME(date_updated)))/3600 <=24 and  TIME_TO_SEC(TIMEDIFF(CURRENT_TIME(),TIME(date_updated)))/3600 > 0 order by date_updated desc");
     if($req)
     {
         while ($row=$req->fetch(PDO::FETCH_OBJ))
@@ -269,7 +284,7 @@ function getAllTransaction()
 {
     global $bdd;
     $result=array();
-    $req=$bdd->query("select * from transaction");
+    $req=$bdd->query("select * from transaction order by date desc ");
     if($req)
     {
         while ($row=$req->fetch(PDO::FETCH_OBJ))
@@ -281,6 +296,40 @@ function getAllTransaction()
 
     return $result;
 }
+
+function getAllRec()
+{
+    global $bdd;
+    $result=array();
+    $req=$bdd->query("select * from transaction where typ_virement='REC' order by date desc ");
+    if($req)
+    {
+        while ($row=$req->fetch(PDO::FETCH_OBJ))
+        {
+            $result[]=$row;
+        }
+
+    }
+
+    return $result;
+}
+
+
+function infoVenteTrans($ref){
+    global $bdd;
+    $result=null;
+    $sql=$bdd->prepare("select * from infos_tmp where ID_trans=?");
+    $sql->execute(array($ref));
+    if($sql->rowCount() == 1)
+    {
+        $row=$sql->fetch(PDO::FETCH_OBJ);
+        $result=$row;
+    }
+
+    return $result;
+
+}
+
 
 function findTransaction($login)
 {

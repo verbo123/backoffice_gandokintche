@@ -22,10 +22,10 @@ require 'pages/side_menu.php';
             <div class="tab-container">
                 <ul class="nav nav-tabs nav-fill" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" data-toggle="tab" href="#home-2" role="tab">Virements effectuées</a>
+                        <a class="nav-link active" data-toggle="tab" href="#home-2" role="tab">Transfert d'argent</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#profile-2" role="tab">Reception d'argent</a>
+                        <a class="nav-link" data-toggle="tab" href="#profile-2" role="tab">Reçeption d'argent</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" data-toggle="tab" href="#messages-2" role="tab">Recharge de compte</a>
@@ -140,7 +140,7 @@ require 'pages/side_menu.php';
                                 <tr>
                                     <th>N° Transaction</th>
                                     <th>Date d'achat</th>
-                                    <th>Site du marchand</th>
+                                    <th>Marchand</th>
                                     <th>Montant</th>
                                 </tr>
                                 </thead>
@@ -154,7 +154,7 @@ require 'pages/side_menu.php';
                                         <tr>
                                             <td><?php echo $user->no_trans; ?></td>
                                             <td><?php echo date_conversion($user->date); ?></td>
-                                            <td><?php echo infos_user($user->code_user_sender)->nom." ".infos_user($user->code_user_sender)->prenom; ?></td>
+                                            <td><?php echo infoVenteTrans($user->no_trans)->urlSuccess; ?></td>
                                             <td><?php echo $user->montant; ?> FCFA</td>
                                         </tr>
                                         <?php

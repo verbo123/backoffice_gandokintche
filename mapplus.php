@@ -9,7 +9,7 @@ require 'pages/side_menu.php';
 <link rel="stylesheet" href="vendors/bower_components/dropzone/dist/dropzone.css">
 <section class="content">
     <header class="content__title">
-        <h1>LISTE DES UTILISATEURS CONNECTE IL Y A 24h</h1>
+        <h1>LISTE DES PREMIERES CONNEXION</h1>
 
 
     </header>
@@ -26,6 +26,7 @@ require 'pages/side_menu.php';
                         <th>Ville</th>
                         <th>Navigateur utilisé</th>
                         <th>Première connexion</th>
+                        <th>Dernière connexion</th>
 
                     </tr>
                     </thead>
@@ -41,6 +42,7 @@ require 'pages/side_menu.php';
                             <td><?php echo $user->ville; ?></td>
                             <td><?php echo $user->navigateur; ?></td>
                             <td><?php echo date_conversion($user->date_visite) ; ?></td>
+                            <td><?php echo date_conversion($user->date_updated) ; ?></td>
                         </tr>
                         <?php
                     }

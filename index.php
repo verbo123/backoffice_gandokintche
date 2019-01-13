@@ -3,7 +3,7 @@ $active = "index";
 require 'pages/header.php';
 require 'pages/menu_header.php';
 require 'pages/side_menu.php';
-error_reporting(0);
+//error_reporting(0);
 ?>
 
 
@@ -30,10 +30,14 @@ error_reporting(0);
             <div class="quick-stats__item">
                 <div class="quick-stats__info">
                     <h2><?php echo resultCount(count(getAllUser())); ?></h2>
-                    <small><a href="ordinary-account">Total des comptes utilisateurs</a></small>
+                    <small><a style="color: white" href="ordinary-account">Total des comptes utilisateurs</a></small>
                 </div>
 
-                <div class=""><i style="font-size: 65px" class="zmdi zmdi-account"></i> </div>
+                <div class="">
+                    <i style="font-size: 65px" class="zmdi zmdi-account"></i>
+
+                </div>
+
             </div>
         </div>
 
@@ -41,7 +45,7 @@ error_reporting(0);
             <div class="quick-stats__item">
                 <div class="quick-stats__info">
                     <h2><?php echo resultCount(count(getAllTransaction())); ?></h2>
-                    <small><a href="other-statistic">Total des virements enregistrés</a></small>
+                    <small><a style="color: white" href="other-statistic">Total des transactions enregistrés</a></small>
                 </div>
 
                 <div class=""><i style="font-size: 65px" class="zmdi zmdi-trending-up"></i></div>
@@ -51,11 +55,12 @@ error_reporting(0);
         <div class="col-sm-6 col-md-3">
             <div class="quick-stats__item">
                 <div class="quick-stats__info">
-                    <h2>00</h2>
-                    <small>Total API/SDK téléchargé</small>
+                    <h2><?php echo resultCount(count(getAllRec())); ?></h2>
+                    <small>Nombre de recharge effectuée</small>
+
                 </div>
 
-                <div class=""><i style="font-size: 65px" class="zmdi zmdi-case-download"></i></div>
+                <div class=""><i style="font-size: 65px" class="zmdi zmdi-money-box"></i></div>
             </div>
         </div>
 
@@ -75,11 +80,11 @@ error_reporting(0);
         <div class="col-lg-6">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Statistique de ventes en ligne</h4>
+                    <h4 class="card-title">Statistique de ventes en ligne de l'année en cours</h4>
                     <h6 class="card-subtitle">Il s'agit des ventes sur le site e-commerce</h6>
 
-                    <div class="flot-chart flot-curved-line"></div>
-                    <div class="flot-chart-legends flot-chart-legends--curved"></div>
+                    <div class="flot-chart flot-line3"></div>
+                    <div class="flot-chart-legends flot-chart-legends--line"></div>
                 </div>
             </div>
         </div>
@@ -87,7 +92,7 @@ error_reporting(0);
         <div class="col-lg-6">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Statistique du service de virement</h4>
+                    <h4 class="card-title">Statistique du service de virement de l'année en cours</h4>
                     <h6 class="card-subtitle">Il s'agit du nombre de virements effectués par les utilisateurs</h6>
 
                     <div class="flot-chart flot-line"></div>

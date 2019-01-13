@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-    
-<!-- Mirrored from byrushan.com/projects/super-admin/app/2.1.2/login.php by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 16 Oct 2018 07:42:13 GMT -->
-<head>
+ <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        <!-- Vendor styles -->
+    <link rel="icon" href="img/fvicon.png" type="image/x-icon" />
+
+    <!-- Vendor styles -->
         <link rel="stylesheet" href="vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css">
         <link rel="stylesheet" href="vendors/bower_components/animate.css/animate.min.css">
 
         <!-- App styles -->
         <link rel="stylesheet" href="css/app.min.css">
+    <!-- Demo only -->
+    <link rel="stylesheet" href="demo/css/demo.css">
     </head>
 
     <body data-sa-theme="1">
@@ -37,7 +39,21 @@
                     <div class="form-group">
                         <input id="mail" type="text" class="form-control text-center" placeholder="Votre Email">
                     </div>
-
+<!--                    <div class="btn-demo notifications-demo mt-3">-->
+<!--                        <a href="#" class="btn btn-light" data-type="inverse" data-animation-in="animated fadeIn" data-animation-out="animated fadeOut">Fade In</a>-->
+<!--                        <a href="#" class="btn btn-light" data-type="inverse" data-animation-in="animated fadeInLeft" data-animation-out="animated fadeOutLeft">Fade In Left</a>-->
+<!--                        <a href="#" class="btn btn-light" data-type="inverse" data-animation-in="animated fadeInRight" data-animation-out="animated fadeOutRight">Fade In Right</a>-->
+<!--                        <a href="#" class="btn btn-light" data-type="inverse" data-animation-in="animated fadeInUp" data-animation-out="animated fadeOutUp">Fade In Up</a>-->
+<!--                        <a href="#" class="btn btn-light" data-type="inverse" data-animation-in="animated fadeInDown" data-animation-out="animated fadeOutDown">Fade In Down</a>-->
+<!--                        <a href="#" class="btn btn-light" data-type="inverse" data-animation-in="animated bounceIn" data-animation-out="animated bounceOut">Bounce In</a>-->
+<!--                        <a href="#" class="btn btn-light" data-type="inverse" data-animation-in="animated bounceInLeft" data-animation-out="animated bounceOutLeft">Bounce In Left</a>-->
+<!--                        <a href="#" class="btn btn-light" data-type="inverse" data-animation-in="animated bounceInRight" data-animation-out="animated bounceOutRight">Bounce In Right</a>-->
+<!--                        <a href="#" class="btn btn-light" data-type="inverse" data-animation-in="animated bounceInUp" data-animation-out="animated bounceOutUp">Bounce In Up</a>-->
+<!--                        <a href="#" class="btn btn-light" data-type="inverse" data-animation-in="animated rotateInDownRight" data-animation-out="animated rotateOutUpRight">Fall In Right</a>-->
+<!--                        <a href="#" class="btn btn-light" data-type="inverse" data-animation-in="animated rotateIn" data-animation-out="animated rotateOut">Rotate In</a>-->
+<!--                        <a href="#" class="btn btn-light" data-type="inverse" data-animation-in="animated flipInX" data-animation-out="animated flipOutX">Flip In X</a>-->
+<!--                        <a href="#" class="btn btn-light" data-type="inverse" data-animation-in="animated flipInY" data-animation-out="animated flipOutY">Flip In Y</a>-->
+<!--                    </div>-->
                     <div class="form-group">
                         <input id="paxe" type="password" class="form-control text-center" placeholder="Mot de passe">
                     </div>
@@ -65,7 +81,6 @@
                     <div class="form-group">
                         <input id="login" type="text" class="form-control text-center" placeholder="Votre login">
                     </div>
-
                     <div class="form-group">
                         <input id="px" type="password" class="form-control text-center" placeholder="Mot de passe">
                     </div>
@@ -96,7 +111,9 @@
                     </div>
                 </div>
 
+
                 <div class="login__block__body">
+
                     <div class="form-group">
                         <input id="name" type="text" class="form-control text-center" placeholder="Nom et Prénom(s)">
                         <span style="color: red" id="error_name"></span>
@@ -191,12 +208,36 @@
         <script src="vendors/bower_components/jquery/dist/jquery.min.js"></script>
         <script src="vendors/bower_components/popper.js/dist/umd/popper.min.js"></script>
         <script src="vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="vendors/bower_components/jquery.scrollbar/jquery.scrollbar.min.js"></script>
+        <script src="vendors/bower_components/jquery-scrollLock/jquery-scrollLock.min.js"></script>
+
 
         <script src="vendors/bower_components/remarkable-bootstrap-notify/dist/bootstrap-notify.min.js"></script>
         <script src="vendors/bower_components/sweetalert2/dist/sweetalert2.min.js"></script>
         <!-- App functions and actions -->
         <script src="js/app.min.js"></script>
+        <!-- Demo only -->
+        <script src="demo/js/demo.js"></script>
+
     </body>
+<div class="modal loader"  tabindex="-1" role="dialog" aria-labelledby="staticModalLabel" data-backdrop="static" aria-hidden="true">
+    <div class="modal-dialog modal-sm" role="document">
+        <div style="background-color: transparent; border: none;margin-top: 50%"
+             class="">
+            <div style="background-color: transparent;" class="">
+                <div style="background-color: transparent;border: none" class="">
+                    <div style="margin: 0 auto;" class="card-body">
+
+                        <img src="img/Loader.gif"/>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
 
 <script type="text/javascript">
 
@@ -209,24 +250,33 @@
                 type:'POST',
                 async:true,
                 data:"email="+encodeURIComponent( $('#mail').val())+"&paxe="+encodeURIComponent($('#paxe').val()),
+                beforeSend: function()
+                {
+                    $(".loader").modal('show');
+                },
                 success : function (data) {
                     data=JSON.parse(data);
-                    console.log(data);
+                    //console.log(data);
                     if(data.msg === true)
                     {
+                        $(".loader").modal('hide');
                         window.location.href='index';
                     }else
+                    {
+                        $(".loader").modal('hide');
                         var nFrom = $(this).attr('data-from');
                         var nAlign = $(this).attr('data-align');
                         var nIcons = $(this).attr('data-icon');
                         var nType = 'danger';
-                        var nAnimIn = $(this).attr('data-animation-in');
-                        var nAnimOut = $(this).attr('data-animation-out');
-                        {
+                        var nAnimIn = "animated bounceInLeft";
+                        var nAnimOut = "animated bounceOutLeft";
+
                         if(data.hasOwnProperty('id'))
                         {
                             notify(nFrom, nAlign, nIcons, nType, nAnimIn, nAnimOut,data.id);
-                        }else{
+                        }
+                        else
+                            {
                             notify(nFrom, nAlign, nIcons, nType, nAnimIn, nAnimOut,data.msg);
                         }
                     }
@@ -245,20 +295,26 @@
                 type:'POST',
                 async:true,
                 data:"login="+encodeURIComponent( $('#login').val())+"&paxe="+encodeURIComponent($('#px').val()),
+                beforeSend : function(){
+                    $(".loader").modal('show');
+                },
                 success : function (data) {
                     data=JSON.parse(data);
-                    console.log(data);
+                   // console.log(data);
                     if(data.msg === true)
                     {
+                        $(".loader").modal('hide');
                         window.location.href='index';
                     }else
+                    {
+                        $(".loader").modal('hide');
                         var nFrom = $(this).attr('data-from');
                     var nAlign = $(this).attr('data-align');
                     var nIcons = $(this).attr('data-icon');
                     var nType = 'danger';
-                    var nAnimIn = $(this).attr('data-animation-in');
-                    var nAnimOut = $(this).attr('data-animation-out');
-                    {
+                    var nAnimIn = "animated bounceInLeft";
+                    var nAnimOut = "animated bounceOutLeft";
+
                         if(data.hasOwnProperty('id'))
                         {
                             notify(nFrom, nAlign, nIcons, nType, nAnimIn, nAnimOut,data.id);

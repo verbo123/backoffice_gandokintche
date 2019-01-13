@@ -71,7 +71,7 @@ require 'pages/side_menu.php';
                                     <th>Distributeur</th>
                                     <th>Nom et Prénom du Reçeveur</th>
                                     <th>Date de l'opération</th>
-                                    <th>Montant</th>
+                                    <th>Montant rechargé</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -118,9 +118,9 @@ require 'pages/side_menu.php';
                                         ?>
                                         <tr>
                                             <td><?php echo $user->no_trans; ?></td>
-                                            <td><?php echo infos_user($user->code_user_sender)->nom." ".infos_user($user->code_user_sender)->prenom;; ?></td>
-                                            <td><?php echo findInfoAchat($user->no_trans)->urlReturn; ?></td>
                                             <td><?php echo date_conversion($user->date); ?></td>
+                                            <td><?php echo findInfoAchat($user->no_trans)->urlReturn; ?></td>
+                                            <td><?php echo $user->montant." FCFA"; ?></td>
                                         </tr>
                                         <?php
                                     }

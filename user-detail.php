@@ -60,7 +60,7 @@ $user=infos_user($_GET["user_code"]);
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Sexe</label>
-                            <input value="<?php echo $user->sexe; ?>" disabled="disabled" type="text" class="form-control" placeholder="i.e. http://smith.com">
+                            <input value="<?php echo $user->sexe; ?>" disabled="disabled" type="text" class="form-control" placeholder="">
                             <i class="form-group__bar"></i>
                         </div>
                     </div>

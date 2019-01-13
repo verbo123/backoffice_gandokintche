@@ -16,7 +16,9 @@
 
     <ul class="top-nav">
         <li class="hidden-xl-up"><a href="#" data-sa-action="search-open"><i class="zmdi zmdi-search"></i></a></li>
-
+        <li>
+            <a target="_blank" href="https://webmail.online.net"  class="top-nav__notify"><i class="zmdi zmdi-email"></i></a>
+        </li>
 
         <li class="dropdown hidden-xs-down">
             <a href="#" data-toggle="dropdown"><i class="zmdi zmdi-more-vert"></i></a>

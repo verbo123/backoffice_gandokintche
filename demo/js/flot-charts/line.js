@@ -132,12 +132,41 @@ $(document).ready(function(){
         }
     });
 
+    var tab3=[];
+    var annee3=[];
+    var lineChartData3=[];
+    $.ajax({
+        url:'Tools/achat.php',
+        type:'POST',
+        data:"annee="+encodeURIComponent(ladate.getFullYear()),
+        async: false,
+        success : function (data) {
+            data=JSON.parse(data);
+            var len = data.length;
+            if(len > 0)
+            {
+                for (var i = 0; i < len; i++)
+                {
+                    tab3.push([parseInt(data[i].mois), parseInt(data[i].nbre)]);
+                    annee3.push(ladate.getFullYear());
+                }
+            }
+
+            lineChartData3.push({
+
+                label: ladate.getFullYear(),
+                data: tab3,
+                color: '#fff'
+            });
+
+        }
+    });
 
 
 
-    // var tab_re=[];
-    // var annee_re=[];
-    // var lineChartData_re=[];
+    var tab_re=[];
+    var annee_re=[];
+    var lineChartData_re=[];
     // var ladate_re=new Date();
     // $.ajax({
     //     url:'Tools/recharge.php',
@@ -169,7 +198,9 @@ $(document).ready(function(){
     // });
 
 
-
+    var tab_re=[];
+    var annee_re=[];
+    var lineChartData_re=[];
     function stat_anterieur(dt) {
         $.ajax({
             url:'Tools/virement.php',
@@ -183,17 +214,85 @@ $(document).ready(function(){
                 {
                     for (var i = 0; i < len; i++)
                     {
-                        tab.push([parseInt(data[i].mois), parseInt(data[i].nbre)]);
-                        annee.push(data[i].annee);
+                        tab_re.push([parseInt(data[i].mois), parseInt(data[i].nbre)]);
+                        annee_re.push(data[i].annee);
                     }
                 }
 
-                lineChartData.push({
-
+                lineChartData_re.push({
                     label: dt,
-                    data: tab,
+                    data: tab_re,
                     color: '#fff'
                 });
+
+
+
+            }
+        });
+
+    }
+
+    var tab_reg=[];
+    var annee_reg=[];
+    var lineChartData_reg=[];
+    function stat_anterieur_achat(dt) {
+        $.ajax({
+            url:'Tools/achat.php',
+            type:'POST',
+            data:"annee="+encodeURIComponent(dt),
+            async: false,
+            success : function (data) {
+                data=JSON.parse(data);
+                var len = data.length;
+                if(len > 0)
+                {
+                    for (var i = 0; i < len; i++)
+                    {
+                        tab_reg.push([parseInt(data[i].mois), parseInt(data[i].nbre)]);
+                        annee_reg.push(data[i].annee);
+                    }
+                }
+
+                lineChartData_reg.push({
+                    label: dt,
+                    data: tab_reg,
+                    color: '#fff'
+                });
+
+
+
+            }
+        });
+
+    }
+
+    var tab_rec=[];
+    var annee_rec=[];
+    var lineChartData_rec=[];
+    function stat_anterieur_rec(dt) {
+        $.ajax({
+            url:'Tools/rec.php',
+            type:'POST',
+            data:"annee="+encodeURIComponent(dt),
+            async: false,
+            success : function (data) {
+                data=JSON.parse(data);
+                var len = data.length;
+                if(len > 0)
+                {
+                    for (var i = 0; i < len; i++)
+                    {
+                        tab_rec.push([parseInt(data[i].mois), parseInt(data[i].nbre)]);
+                        annee_rec.push(data[i].annee);
+                    }
+                }
+
+                lineChartData_rec.push({
+                    label: dt,
+                    data: tab_rec,
+                    color: '#fff'
+                });
+
 
 
             }
@@ -202,15 +301,42 @@ $(document).ready(function(){
     }
 
 
+    $("#change_date").change(function () {
+        Cookies.set("annee",$("#change_date").val());
+        window.location.reload(true);
+    });
+
+    if(Cookies.get("annee") != null || Cookies.get("annee") != "" || Cookies.get("annee") != "undefined")
+    {
+        stat_anterieur(Cookies.get("annee"));
+        stat_anterieur_achat(Cookies.get("annee"));
+        stat_anterieur_rec(Cookies.get("annee"));
+    }else{
+        stat_anterieur(ladate.getFullYear());
+        stat_anterieur_achat(ladate.getFullYear());
+        stat_anterieur_rec(ladate.getFullYear());
+    }
 
     // Create chart
     if ($('.flot-line')[0]) {
         $.plot($('.flot-line'), lineChartData, lineChartOptions);
     }
 
-    // if ($('.flot-line')[1]) {
-    //     $.plot($('.flot-line'), lineChartData, lineChartOptions);
-    // }
+    if ($('.flot-line2')[0]) {
+        $.plot($('.flot-line2'), lineChartData_re, lineChartOptions_re);
+    }
+
+    if ($('.flot-line3')[0]) {
+       $.plot($('.flot-line3'), lineChartData3, lineChartOptions);
+   }
+
+    if ($('.flot-line4')[0]) {
+        $.plot($('.flot-line4'), lineChartData_reg, lineChartOptions);
+    }
+
+    if ($('.flot-line5')[0]) {
+        $.plot($('.flot-line5'), lineChartData_rec, lineChartOptions);
+    }
 
 
 

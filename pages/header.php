@@ -10,22 +10,25 @@ require 'Tools/fonction.php';
 
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <!-- Mirrored from byrushan.com/projects/super-admin/app/2.1.2/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 16 Oct 2018 07:34:10 GMT -->
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>BACK-OFFICE GANDOKINTCHE</title>
+    <link rel="icon" href="img/fvicon.png" type="image/x-icon" />
 
     <!-- Vendor styles -->
     <link rel="stylesheet" href="vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css">
     <link rel="stylesheet" href="vendors/bower_components/animate.css/animate.min.css">
     <link rel="stylesheet" href="vendors/bower_components/jquery.scrollbar/jquery.scrollbar.css">
     <link rel="stylesheet" href="vendors/bower_components/fullcalendar/dist/fullcalendar.min.css">
+    <link rel="stylesheet" href="vendors/bower_components/trumbowyg/dist/ui/trumbowyg.min.css">
 
     <!-- App styles -->
     <link rel="stylesheet" href="css/app.min.css">
+    <link rel="stylesheet" href="css/alertb.css">
 </head>
 <body data-sa-theme="<?php if(isset($_COOKIE['themevariable'])){echo $_COOKIE['themevariable'];}else{echo '1'; }  ?>">
 <main class="main">
